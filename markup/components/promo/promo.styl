@@ -5,6 +5,7 @@
   background-repeat repeat
   background-size 50px 50px
   &__inner
+    position relative
     display flex
     max-width 1920px
     height inherit
@@ -17,8 +18,8 @@
       width 100%
   &__content
     position absolute
-    top: 50%;
-    left: 50%;
+    top: 0
+    left: 0;
     display flex
     flex-direction column
     align-items center
@@ -28,7 +29,6 @@
     border-radius 50%
     text-align center
     background-color #c5c5c5
-    transform scale(0)
     animation scale 1s ease-in 1s
     animation-fill-mode: forwards;
   &__content-header
@@ -76,45 +76,46 @@
       color $light-blue
       &::before
         background-color $orange
-  &__mouse
-    display block
-    content ''
+.mouse-icon
+  display block
+  position absolute
+  width 30px
+  height 50px
+  bottom 20px
+  left 50%
+  border-radius: 15px 15px 13px 13px;
+  border: 2px solid #fff;
+  transform translateX(-50%) scale(0)
+  animation mouse-scale 1s ease-out 3.8s
+  animation-fill-mode: forwards;
+  &:before
     position absolute
-    width 30px
-    height 50px
-    bottom -70px
+    content ''
     left 50%
-    border-radius: 15px 15px 13px 13px;
-    border: 2px solid #fff;
-    transform translateX(-50%) scaleY(0)
-    animation mouse-scale 1s ease-out 3.8s
-    animation-fill-mode: forwards;
-    &:before
-      position absolute
-      content ''
-      left 50%
-      top 8px
-      margin-left -2px
-      width 4px
-      height 9px
-      background #fff
-      border-radius 2px
-      animation mouse-wheel 1.25s infinite linear
-      transform-origin 50% 0
+    top 8px
+    margin-left -2px
+    width 4px
+    height 9px
+    background #fff
+    border-radius 2px
+    animation mouse-wheel 1.25s infinite linear
+    transform-origin 50% 0
 
 @keyframes scale
   0%
-    transform scale(0) translate(0%, 0%)
+    transform scale(0)
     opacity 0
   100%
-    transform scale(1) translate(-50%, -50%)
+    transform scale(1)
     opacity 1
 
 @keyframes mouse-scale
   0%
     transform translateX(-50%) scaleY(0)
+    opacity 0
   100%
     transform translateX(-50%) scaleY(1)
+    opacity 0.6
 
 
 @keyframes mouse-wheel
